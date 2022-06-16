@@ -1,6 +1,7 @@
 package com.example.aop.controller;
 
 import com.example.aop.model.User;
+import com.example.aop.model.UserBuilder;
 import com.example.aop.model.UserDetails;
 import com.example.aop.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,14 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final UserService userService;
+    private UserBuilder builder;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserBuilder builder) {
         this.userService = userService;
+        this.builder = builder;
     }
 
     @PostMapping
     public User addUser(@RequestBody UserDetails userDetails){
-        User user = User.builder()
+        User user = builder
+                .newUser()
                 .setName(userDetails.getName())
                 .setInfo(userDetails.getInfo())
                 .setRating(userDetails.getRating())

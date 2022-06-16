@@ -18,10 +18,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public static UserBuilder builder() {
-        return new UserBuilder();
-    }
-
     public void setName(String name) {
         this.name = name;
     }

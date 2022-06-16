@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserBuilder {
 
-    private User user = new User();
+    private User user;
 
     public UserBuilder setName(String name) {
         user.setName(name);
@@ -24,5 +24,10 @@ public class UserBuilder {
 
     public User build() {
         return user;
+    }
+
+    public UserBuilder newUser(){
+        user = new User();
+        return this;
     }
 }
